@@ -1,11 +1,26 @@
 const WeatherComponent = {
-  run() {
-    Weather.APIKEY = '15dc609387661550dd0221e70d5bb93a';
-    Weather.getCurrent("Kansas City", function(current) {
-      console.log(
-        ["currently:", current.temperature(), "and", current.conditions()].join(" ")
-      );
-    });
-  }
+    run(question, obj, card) {
+        $.simpleWeather({
+            location: 'London, GB',
+            woeid: '',
+            unit: 'f',
+            success: function(weather) {
+                // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+                // html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+                // html += '<li class="currently">'+weather.currently+'</li>';
+                // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+
+                // $("#weather").html(html);
+                let desc = `Currently the weather is ${weather.text}`;
+                card.updateCard(question, desc,'resource/image/weather.jpg');
+                card.show();
+                card.speak(desc);
+                console.log(weather);
+            },
+            error: function(error) {
+                $("#weather").html('<p>' + error + '</p>');
+            }
+        });
+    }
 };
 window.WeatherComponent = WeatherComponent;

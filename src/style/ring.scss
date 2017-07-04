@@ -1,0 +1,15 @@
+@-webkit-keyframes pulse {
+  0% { box-shadow:0 0 8px #fff, inset 0 0 8px #fff; }
+  50% { box-shadow:0 0 16px #fff, inset 0 0 14px #fff; }
+  100% { box-shadow:0 0 8px #fff, inset 0 0 8px #fff; }
+}
+
+
+.ring {
+  background-color:transparent;
+  width:100px;
+  height:100px;
+  border-radius:50px;
+  box-shadow: 0 0 8px #fff, inset 0 0 8px #fff;
+  -webkit-animation: pulse 2s linear 1s infinite;
+}
