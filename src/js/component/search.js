@@ -1,52 +1,39 @@
 import Knowledge from '../config/knowledge';
+import Language from '../lib/language/language';
 import Card from './card';
+let DataService;
 
 class Search {
-    constructor() {
-        this.element = document.querySelector('[search-component]');
-        this.card = new Card();
-        this.addListeners();
+  constructor(dataService) {
+    DataService = dataService;
+    this.element = document.querySelector('[search-component]');
+    this.card = new Card();
+    this.addListeners();
+    this.element.focus();
+  }
+  addListeners() {
+    this.element.addEventListener('keyup', this.onKeyUp.bind(this));
+    //this.element.addEventListener('keydown', this.onFocus.bind(this));
+    this.element.addEventListener('focus', this.onFocus.bind(this));
+  }
+  onFocus(event) {
+    this.element.focus();
+    this.element.value='';
+  }
+  hide() {
+    this.card.hide();
+    this.element.focus();
+    this.card.stop();
+  }
+  onKeyUp(event) {
+    if (event.keyCode === 13) {
+      this.card.hide();
+      let response = DataService.findMatch(this.element.value.toLowerCase());
+      this.card.update(this.element.value, response);
+    } else {
+      this.hide();
     }
-    addListeners() {
-        this.element.addEventListener('keyup', this.onKeyUp.bind(this));
-        this.element.addEventListener('keydown', this.onFocus.bind(this));
-        //this.element.addEventListener('focus', this.onFocus.bind(this));
-    }
-    onFocus(event) {
-        this.card.hide();
-        this.element.focus();
-    }
-    onKeyUp(event) {
-        if (event.keyCode === 13) {
-            this.card.hide();
-            let response = this.findMatch(this.element.value.toLowerCase());
-            this.card.update(this.element.value, response);
-        }
-    }
-    findMatch(value) {
-        let response = {
-            text: 'I didn\'t find the anwser to your question',
-            link: ''
-        };
-        Knowledge.forEach((obj) => {
-            let found = 0;
-            let length = obj.keywords.length;
-            obj.keywords.forEach((keyword) => {
-                if (value.indexOf(keyword.toLowerCase()) >= 0) found++;
-            });
-            let percentage = found / length;
-            if (percentage > 0.7) {
-                response = {
-                    text: obj.response,
-                    link: obj.link,
-                    image:obj.image
-                };
-            }
-
-        });
-
-        return response;
-    }
+  }
 }
 
 export default Search;

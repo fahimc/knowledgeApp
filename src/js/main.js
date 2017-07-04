@@ -1,4 +1,5 @@
 import Search from "./component/search";
+import DataService from "./service/dataService";
 
 let Main =
 {
@@ -8,7 +9,10 @@ let Main =
   },
   onLoaded()
   {
-    let search = new Search();
+    DataService.get(this.onDataComplete.bind(this));
+  },
+  onDataComplete(){
+    let search = new Search(DataService);
   }
 };
 
