@@ -20,12 +20,12 @@ class Card {
     this.title.textContent = question;
     this.desc.innerHTML = response.text;
     if (response.image) {
-      this.image.src = response.image;
+      this.image.style.backgroundImage = 'url(' + response.image + ')';
       this.image.onerror = () => {
-        this.image.src = 'resource/image/card.jpg';
+        this.image.style.backgroundImage = 'url(../resource/image/card.jpg)';
       };
     } else {
-      this.image.src = 'resource/image/card.jpg';
+      this.image.style.backgroundImage = 'url(../resource/image/card.jpg)';
     }
     this.image.style.display = "block";
     if (response.link) {
@@ -40,7 +40,7 @@ class Card {
     this.show();
   }
   reset() {
-    this.image.src = '';
+    this.image.style.backgroundImage = '';
     this.custom.innerHTML = '';
     this.title.textContent = '';
     this.desc.textContent = '';
@@ -65,7 +65,7 @@ class Card {
   updateCard(title, desc, image) {
     this.title.textContent = title;
     this.desc.innerHTML = desc;
-    this.image.src = image;
+    this.image.style.backgroundImage = 'url(' + image + ')';
   }
   strip(html) {
     // var tmp = document.createElement("DIV");
