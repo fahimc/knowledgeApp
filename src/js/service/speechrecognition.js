@@ -57,5 +57,5 @@ const Speech = {
         window.speechSynthesis.speak(msg);
     }
 }
-
+window.Speech = Speech;
 export default Speech;

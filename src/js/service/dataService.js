@@ -53,7 +53,7 @@ const DataService = {
   },
   processRequest(value,card) {
     if(this.isSpeaking)return;
-    this.isSpeaking = true;
+   // this.isSpeaking = true;
     card.hide();
     let response = DataService.findMatch(value.toLowerCase());
     card.update(value, response,this.onSpeakEnd.bind(this));
