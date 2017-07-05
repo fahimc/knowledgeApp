@@ -18,7 +18,7 @@ class Search {
   }
   onFocus(event) {
     this.element.focus();
-    this.element.value='';
+    this.element.value = '';
   }
   hide() {
     this.card.hide();
@@ -26,14 +26,12 @@ class Search {
     this.card.stop();
   }
   onKeyUp(event) {
-    if (event.keyCode === 13) {
-      this.card.hide();
-      let response = DataService.findMatch(this.element.value.toLowerCase());
-      this.card.update(this.element.value, response);
-    } else {
-      this.hide();
+      if (event.keyCode === 13) {
+        DataService.processRequest(this.element.value,this.card);
+      } else {
+        this.hide();
+      }
     }
-  }
 }
 
 export default Search;

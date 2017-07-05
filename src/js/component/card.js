@@ -10,7 +10,7 @@ class Card {
     this.image = this.element.querySelector('.image-tag');
     this.custom = this.element.querySelector('[custom-component]');
   }
-  update(question, response) {
+  update(question, response,endCallback) {
     if (response.component && window[response.component]) {
       window[response.component].run(question, response, this);
       return;
@@ -37,7 +37,7 @@ class Card {
       this.link.textContent = '';
     }
 
-    this.speak(response.text);
+    this.speak(response.text,endCallback);
     this.show();
   }
   reset() {
@@ -48,10 +48,14 @@ class Card {
     this.link.href = '#';
     this.link.textContent = '';
   }
-  speak(text) {
+  speak(text,endCallback) {
     var msg = new SpeechSynthesisUtterance(this.strip(text));
+    msg.onend = endCallback;
     msg.lang = 'en-GB';
     window.speechSynthesis.speak(msg);
+  }
+  onSpeekEnd(){
+
   }
   hide() {
     this.element.classList.add('hide');

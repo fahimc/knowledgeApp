@@ -5,6 +5,7 @@ const DataService = {
   data: null,
   timer: null,
   pollDuration: 10000,
+  isSpeaking:false,
   get(callback) {
     this.callback = callback;
     Tabletop.init({
@@ -50,6 +51,16 @@ const DataService = {
 
     return collection;
   },
+  processRequest(value,card) {
+    if(this.isSpeaking)return;
+    this.isSpeaking = true;
+    card.hide();
+    let response = DataService.findMatch(value.toLowerCase());
+    card.update(value, response,this.onSpeakEnd.bind(this));
+  },
+  onSpeakEnd(){
+     this.isSpeaking = false;
+  },
   findMatch(value) {
     let response = {
       text: 'I didn\'t find the anwser to your question',
@@ -62,7 +73,7 @@ const DataService = {
         keywordsCollection.forEach((keyword) => {
           keyword = keyword.trim();
           keyword = keyword.replace(/\W/g, '');
-          var rx = new RegExp(`\\b${keyword}\\b`,'gim');
+          var rx = new RegExp(`\\b${keyword}\\b`, 'gim');
           var matches = value.match(rx);
           if (keyword && matches) count++;
         });

@@ -10,11 +10,12 @@ let Main =
   },
   onLoaded()
   {
-    Speechrecognition.init();
+   
     DataService.get(this.onDataComplete.bind(this));
   },
   onDataComplete(){
     let search = new Search(DataService);
+     Speechrecognition.init(DataService,search);
   }
 };
 
