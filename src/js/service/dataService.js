@@ -61,7 +61,9 @@ const DataService = {
         let count = 0;
         keywordsCollection.forEach((keyword) => {
           keyword = keyword.trim();
-          if (value.indexOf(keyword) >= 0) count++;
+          var rx = new RegExp(`\\b${keyword}\\b`,'gim');
+          var matches = value.match(rx);
+          if (keyword && matches) count++;
         });
         //let distance = Language.distance(value, question);
         //console.log(distance);
