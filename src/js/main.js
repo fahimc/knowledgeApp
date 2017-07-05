@@ -1,5 +1,6 @@
 import Search from "./component/search";
 import DataService from "./service/dataService";
+import Speechrecognition from "./service/speechrecognition";
 
 let Main =
 {
@@ -9,6 +10,7 @@ let Main =
   },
   onLoaded()
   {
+    Speechrecognition.init();
     DataService.get(this.onDataComplete.bind(this));
   },
   onDataComplete(){

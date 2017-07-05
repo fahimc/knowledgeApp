@@ -18,7 +18,8 @@ class Card {
     this.custom.innerHTML = '';
     if (question.indexOf('?') < 0) question += '?';
     this.title.textContent = question;
-    this.desc.innerHTML = response.text;
+    this.desc.setAttribute('style', 'white-space: pre;');
+    this.desc.textContent = response.text;
     if (response.image) {
       this.image.style.backgroundImage = 'url(' + response.image + ')';
       this.image.onerror = () => {
