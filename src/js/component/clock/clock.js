@@ -4,7 +4,7 @@ const ClockComponent = {
         let hours = d.getHours(); // => 9
         let minutes = this.checkTime(d.getMinutes()); // =>  30
         let secs = this.checkTime(d.getSeconds()); // => 51
-        let component = `<div class="clock-component"><h1>${hours}:${minutes}:${secs}</h1></div>`;
+        let component = `<div class="clock-component"><h1>${hours}:${minutes}</h1></div>`;
         let desc = `Currently time is ${hours}:${minutes}`;
         card.updateCard(question, desc, 'resource/image/card.jpg');
         card.addCustomComponent(component);
