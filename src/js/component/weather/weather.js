@@ -1,9 +1,9 @@
 const WeatherComponent = {
     run(question, obj, card) {
         $.simpleWeather({
-            location: 'London, GB',
+            location: 'England, UK',
             woeid: '',
-            unit: 'f',
+            unit: 'c',
             success: function(weather) {
                 // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
                 // html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
@@ -11,7 +11,7 @@ const WeatherComponent = {
                 // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
 
                 // $("#weather").html(html);
-                let desc = `Currently the weather is ${weather.text}`;
+                let desc = `Currently the weather is ${weather.currently}`;
                 card.updateCard(question, desc,'resource/image/weather.jpg');
                 card.show();
                 card.speak(desc);

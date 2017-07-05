@@ -60,6 +60,7 @@ const DataService = {
       obj.keywords.forEach((keywordsCollection) => {
         let count = 0;
         keywordsCollection.forEach((keyword) => {
+          keyword = keyword.trim();
           if (value.indexOf(keyword) >= 0) count++;
         });
         //let distance = Language.distance(value, question);
