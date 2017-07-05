@@ -17,7 +17,7 @@ const Speech = {
         this.recognition.interimResults = false;
         this.recognition.onresult = this.onResult.bind(this);
         this.recognition.onaudiostart = this.onAudioStart.bind(this);
-        this.recognition.onaudioend = this.onAudioEnd.bind(this);
+        this.recognition.speechend  = this.onAudioEnd.bind(this);
         this.recognition.onend = this.onEnd.bind(this);
         this.recognition.start();
 
@@ -27,6 +27,7 @@ const Speech = {
     },
     onAudioStart() {
         console.log('Audio capturing started');
+        this.ring.classList.remove('active');
         this.ring.classList.remove('noactive');
     },
     onEnd() {

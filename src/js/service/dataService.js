@@ -63,7 +63,7 @@ const DataService = {
   },
   findMatch(value) {
     let response = {
-      text: 'I didn\'t find the anwser to your question',
+      text: 'I didn\'t find the anwser to your question but you can try googling it',
       link: ''
     };
     let currentDistance = 0;

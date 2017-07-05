@@ -11,7 +11,7 @@ const WeatherComponent = {
                 // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
 
                 // $("#weather").html(html);
-                let desc = `Currently the weather is ${weather.currently}`;
+                let desc = `Currently in London the weather is ${weather.currently} at ${weather.temp} degrees`;
                 card.updateCard(question, desc,'resource/image/weather.jpg');
                 card.show();
                 card.speak(desc);
