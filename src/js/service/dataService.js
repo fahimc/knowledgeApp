@@ -61,6 +61,7 @@ const DataService = {
         let count = 0;
         keywordsCollection.forEach((keyword) => {
           keyword = keyword.trim();
+          keyword = keyword.replace(/\W/g, '');
           var rx = new RegExp(`\\b${keyword}\\b`,'gim');
           var matches = value.match(rx);
           if (keyword && matches) count++;
