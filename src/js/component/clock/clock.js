@@ -1,5 +1,5 @@
 const ClockComponent = {
-    run(question, obj, card) {
+    run(question, obj, card,endCallback) {
         let d = new Date();
         let hours = d.getHours(); // => 9
         let minutes = this.checkTime(d.getMinutes()); // =>  30
@@ -9,6 +9,7 @@ const ClockComponent = {
         card.updateCard(question, desc, 'resource/image/card.jpg');
         card.addCustomComponent(component);
         card.show();
+        card.endCallback = endCallback;
         card.speak(desc);
     },
     checkTime(i) {

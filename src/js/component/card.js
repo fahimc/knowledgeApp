@@ -9,10 +9,13 @@ class Card {
     this.link = this.element.querySelector('.card-link');
     this.image = this.element.querySelector('.image-tag');
     this.custom = this.element.querySelector('[custom-component]');
+    this.endCallback;
   }
   update(question, response,endCallback) {
+    console.log('update');
+     this.endCallback = endCallback;
     if (response.component && window[response.component]) {
-      window[response.component].run(question, response, this);
+      window[response.component].run(question, response, this,endCallback);
       return;
     }
     this.custom.innerHTML = '';
@@ -37,7 +40,7 @@ class Card {
       this.link.textContent = '';
     }
 
-    this.speak(response.text,endCallback);
+    this.speak(response.text);
     this.show();
   }
   reset() {
@@ -48,14 +51,17 @@ class Card {
     this.link.href = '#';
     this.link.textContent = '';
   }
-  speak(text,endCallback) {
+  speak(text) {
+    console.log('speak()');
     var msg = new SpeechSynthesisUtterance(this.strip(text));
-    msg.onend = endCallback;
+    msg.onend = this.onSpeekEnd.bind(this);
     msg.lang = 'en-GB';
     window.speechSynthesis.speak(msg);
   }
   onSpeekEnd(){
-
+    console.log('speak end card');
+    if(this.endCallback)this.endCallback();
+    this.endCallback = undefined;
   }
   hide() {
     this.element.classList.add('hide');
@@ -66,6 +72,7 @@ class Card {
   }
   stop() {
     speechSynthesis.cancel();
+    if(this.endCallback)this.endCallback();
   }
   updateCard(title, desc, image) {
     this.title.textContent = title;

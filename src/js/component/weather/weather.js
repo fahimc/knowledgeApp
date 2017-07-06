@@ -1,5 +1,5 @@
 const WeatherComponent = {
-    run(question, obj, card) {
+    run(question, obj, card,endCallback) {
         $.simpleWeather({
             location: 'England, UK',
             woeid: '',
@@ -14,7 +14,8 @@ const WeatherComponent = {
                 let desc = `Currently the weather is ${weather.currently}`;
                 card.updateCard(question, desc,'resource/image/weather.jpg');
                 card.show();
-                card.speak(desc);
+                card.endCallback = endCallback;
+                card.speak(desc,endCallback);
                 console.log(weather);
             },
             error: function(error) {

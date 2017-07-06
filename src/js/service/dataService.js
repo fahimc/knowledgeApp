@@ -52,6 +52,7 @@ const DataService = {
     return collection;
   },
   processRequest(value,card) {
+    console.log('is speaking',this.isSpeaking);
     if(this.isSpeaking)return;
     this.isSpeaking = true;
     card.hide();
@@ -59,6 +60,7 @@ const DataService = {
     card.update(value, response,this.onSpeakEnd.bind(this));
   },
   onSpeakEnd(){
+    console.log('speak ended');
      this.isSpeaking = false;
   },
   findMatch(value) {

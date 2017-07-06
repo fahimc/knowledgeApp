@@ -9,16 +9,26 @@ const Speech = {
   init(dataService, search) {
     DataService = dataService;
     Search = search;
+    this.loader = document.querySelector('.loader');
     this.recognition = new webkitSpeechRecognition();
     this.recognition.continuous = true;
     this.recognition.lang = 'en-GB';
     this.recognition.interimResults = false;
     this.recognition.onresult = this.onResult.bind(this);
     this.recognition.onend = this.onEnd.bind(this);
+    this.recognition.onaudioend = this.onAudioEnd.bind(this);
+    this.recognition.onaudiostart = this.onAudioStart.bind(this);
     this.recognition.start();
 
   },
+  onAudioStart(){
+  },
+  onAudioEnd(){
+     console.log('Speech has stopped being detected');
+      this.recognition.stop();
+  },
   onEnd() {
+    this.loader.classList.add('hide');
     this.recognition.start();
   },
   onResult(event) {
@@ -33,6 +43,10 @@ const Speech = {
       }
     }
   },
+  say(text) {
+    this.loader.classList.add('hide');
+    DataService.processRequest(text, Search.card);
+  },
   triggered() {
     setTimeout(() => {
       this.speak('how can i help?');
@@ -44,5 +58,5 @@ const Speech = {
     window.speechSynthesis.speak(msg);
   }
 }
-
+window.Speech = Speech;
 export default Speech;
