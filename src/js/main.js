@@ -1,6 +1,7 @@
 import Search from "./component/search";
 import DataService from "./service/dataService";
 import Speechrecognition from "./service/speechrecognition";
+import Calendar from "./service/calendar";
 
 let Main =
 {
@@ -16,6 +17,7 @@ let Main =
   onDataComplete(){
     let search = new Search(DataService);
      Speechrecognition.init(DataService,search);
+     Calendar.init();
   }
 };
 
