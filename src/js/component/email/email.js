@@ -20,7 +20,7 @@ const EmailComponent = {
         response = response.toLowerCase();
         switch (this.state) {
             case 0:
-                response = response.replace(' at ', '@').replace('dot', '.').replace('.comm', '.com').replace(/\s/g, '');
+                response = response.replace(' at ', '@').replace('dot', '.').replace(/\s/g, '').replace('.comm', '.com');
                 this.toEmail = response;
                 Speech.speak('okay, so you want to send an email to ' + response + '? yes?');
                 this.state++;
