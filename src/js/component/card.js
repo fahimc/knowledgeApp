@@ -1,8 +1,12 @@
 import WeatherComponent from './weather/weather';
 import ClockComponent from './clock/clock';
+import HelpComponent from './help/help';
+import EmailComponent from './email/email';
+let DataService;
 
 class Card {
-  constructor() {
+  constructor(dataService) {
+    DataService = dataService; 
     this.element = document.querySelector('[card-component]');
     this.title = this.element.querySelector('.card-title');
     this.desc = this.element.querySelector('.card-desc');
@@ -11,14 +15,15 @@ class Card {
     this.custom = this.element.querySelector('[custom-component]');
   }
   update(question, response,endCallback) {
+    console.log(response);
     if (response.component && window[response.component]) {
-      window[response.component].run(question, response, this);
+      window[response.component].run(question, response, this,DataService);
       return;
     }
     this.custom.innerHTML = '';
     if (question.indexOf('?') < 0) question += '?';
     this.title.textContent = question;
-    this.desc.setAttribute('style', 'white-space: pre;');
+    this.desc.setAttribute('style', 'white-space: pre-wrap;');
     this.desc.textContent = response.text;
     if (response.image) {
       this.image.style.backgroundImage = 'url(' + response.image + ')';

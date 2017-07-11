@@ -26,6 +26,7 @@ const DataService = {
       let obj = {
         image: item.IMAGE,
         component: item.COMPONENT,
+        description: item.DESCRIPTION,
         link: {
           src: item['LINK SRC'],
           text: item['LINK TEXT'],

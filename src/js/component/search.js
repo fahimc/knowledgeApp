@@ -7,7 +7,7 @@ class Search {
   constructor(dataService) {
     DataService = dataService;
     this.element = document.querySelector('[search-component]');
-    this.card = new Card();
+    this.card = new Card(DataService);
     this.addListeners();
     this.element.focus();
   }
