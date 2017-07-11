@@ -22,7 +22,7 @@ const EmailComponent = {
             case 0:
                 response = response.replace(' at ', '@').replace('dot', '.').replace(/\s/g, '').replace('.comm', '.com');
                 this.toEmail = response;
-                Speech.speak('okay, so you want to send an email to ' + response + '? yes?');
+                Speech.speak('okay, so you want to send an email to ' + response + '? say yes to confirm?');
                 this.state++;
                 break;
             case 1:
@@ -43,7 +43,7 @@ const EmailComponent = {
             case 2:
                 this.subject = response;
                 this.state++;
-                Speech.speak('so the email title is \'' + response + '\'? yes?');
+                Speech.speak('so the email title is \'' + response + '\'? say yes to confirm?');
                 break;
             case 3:
                 if (response == 'yes') {
