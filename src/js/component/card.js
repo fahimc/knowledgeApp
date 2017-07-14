@@ -2,6 +2,7 @@ import WeatherComponent from './weather/weather';
 import ClockComponent from './clock/clock';
 import HelpComponent from './help/help';
 import EmailComponent from './email/email';
+import TechMeetingComponent from './tech-meeting/tech-meeting';
 let DataService;
 
 class Card {
