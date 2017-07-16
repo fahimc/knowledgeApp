@@ -1,4 +1,5 @@
-import Language from '../lib/language/language'
+import Language from '../lib/language/language';
+window.webkitSpeechRecognition = window.webkitSpeechRecognition ? window.webkitSpeechRecognition : window.SpeechRecognition;
 let DataService;
 let Search;
 

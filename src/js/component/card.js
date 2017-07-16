@@ -3,6 +3,8 @@ import ClockComponent from './clock/clock';
 import HelpComponent from './help/help';
 import EmailComponent from './email/email';
 import TechMeetingComponent from './tech-meeting/tech-meeting';
+import ConversationComponent from './conversation/conversation';
+
 let DataService;
 
 class Card {
